@@ -30,6 +30,6 @@ def product_info(request):
     serializer = ProductInfoSerializer({
         'products': products,
         'count': len(products),
-        'max_price': products.aggregate(max_price=Max('price'))['max_price']
+        'max_price': products.aggregate(max_price=Max('price'))['max_price'] #last ['max_price is to get the value if max_price then ['max_price'] if highest then ['highest']]]
     })
     return Response(serializer.data)
