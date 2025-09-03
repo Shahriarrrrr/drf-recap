@@ -56,7 +56,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'total_price',
         )
 
-
+#Not a model Serializers
 class ProductInfoSerializer(serializers.Serializer):
     products = ProductSerializer(many=True)
     count = serializers.IntegerField()
