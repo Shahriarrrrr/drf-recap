@@ -5,6 +5,7 @@ from api.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class ProductListAPIView(generics.ListAPIView):
@@ -15,16 +16,18 @@ class ProductListAPIView(generics.ListAPIView):
 class ProductDetailApiView(generics.RetrieveAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
-        lookup_url_kwarg = 'product_id' # if in url <int:pk> is not there but any other name then this is what i have to do
+        lookup_url_kwarg = 'product_id' # if in url <int:pk> is not there but any other name then this is what i have to do, Look in the urls.py
 
 
 class OrderListApiView(generics.ListAPIView):
       queryset = Order.objects.prefetch_related('items__product')
       serializer_class = OrderSerializer
       
+
 class UserOrderListApiView(generics.ListAPIView):
       queryset = Order.objects.prefetch_related('items__product')
       serializer_class = OrderSerializer
+      permission_classes= [IsAuthenticated]
 
       def get_queryset(self):
             user = self.request.user
