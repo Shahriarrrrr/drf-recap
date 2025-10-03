@@ -7,10 +7,29 @@ GET http://127.0.0.1:8000/products/
 
 POST http://127.0.0.1:8000/products/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NDkwODI3LCJpYXQiOjE3NTk0OTA1MjcsImp0aSI6ImI3NDg0MDk1NGM4MTQ2NDliYjEyMWE4ZTM3ZGIxYzM0IiwidXNlcl9pZCI6IjMifQ.s1UKC2SFk4YQrWfVl6Lf5ttNYjqUCZ_zYCiwTSQobe8
 
 {
-    "description": "Deshi Ponno!",
-    "name": "Walton TV",
-    "price": "209",
-    "stock": 2
+    "description": "Chinese Ponno!",
+    "name": "Singer TV",
+    "price": "2009",
+    "stock": 21
 }
+
+
+###
+
+POST http://127.0.0.1:8000/api/token/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "username" : "shahriar",
+    "password" : "1234"
+}
+
+
+
+###
+
+GET http://127.0.0.1:8000/user-orders/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NDkxMTU5LCJpYXQiOjE3NTk0OTA4NTksImp0aSI6ImJkNDVjYjJkZGFjYjQxZDM4M2Q0YmVjN2I5N2M0OGFjIiwidXNlcl9pZCI6IjMifQ.tyilEM5mAXMJZ1RXlflhwC07JM9qcjKfH0qn3sjLUxw

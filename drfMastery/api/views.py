@@ -52,7 +52,7 @@ class UserOrderListApiView(generics.ListAPIView):
             user = self.request.user
             qs = super().get_queryset()
             return qs.filter(user = user)
-            return user.accounts.all()
+            
 
 
 class ProductInfoAPIView(APIView):
