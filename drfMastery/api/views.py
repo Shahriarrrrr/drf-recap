@@ -10,9 +10,20 @@ from rest_framework.views import APIView
 
 
 
-class ProductListAPIView(generics.ListAPIView):
-    queryset = Product.objects.filter(stock__gt = 0)
-    serializer_class = ProductSerializer
+class ProductListCreateApiView(generics.ListCreateAPIView):
+      queryset = Product.objects.all()
+      serializer_class = ProductSerializer
+
+
+#Combined the list and create together by ListCreateAPIView
+# class ProductListAPIView(generics.ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+
+
+# class ProductCreateAPIView(generics.CreateAPIView):
+#     model = Product
+#     serializer_class = ProductSerializer
 
 
 class ProductDetailApiView(generics.RetrieveAPIView):
