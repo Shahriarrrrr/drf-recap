@@ -1,0 +1,16 @@
+GET http://127.0.0.1:8000/products/
+
+
+
+###
+
+
+POST http://127.0.0.1:8000/products/
+Content-Type: application/json
+
+{
+    "description": "Deshi Ponno!",
+    "name": "Walton TV",
+    "price": "209",
+    "stock": 2
+}
