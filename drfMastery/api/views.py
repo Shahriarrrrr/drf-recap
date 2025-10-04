@@ -21,6 +21,8 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
             return super().get_permissions()
 
 
+
+
 #Combined the list and create together by ListCreateAPIView
 # class ProductListAPIView(generics.ListAPIView):
 #     queryset = Product.objects.all()
@@ -31,11 +33,21 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
 #     model = Product
 #     serializer_class = ProductSerializer
 
+class ProductDetailApiView(generics.RetrieveUpdateDestroyAPIView):
+      queryset = Product.objects.all()
+      serializer_class = ProductSerializer
+      lookup_url_kwarg = 'product_id'
+      def get_permissions(self):
+            self.permission_classes = [AllowAny]
+            if self.request.method in ['PATCH', 'PUT', 'DELETE']:
+                  self.permission_classes = [IsAdminUser]
 
-class ProductDetailApiView(generics.RetrieveAPIView):
-        queryset = Product.objects.all()
-        serializer_class = ProductSerializer
-        lookup_url_kwarg = 'product_id' # if in url <int:pk> is not there but any other name then this is what i have to do, Look in the urls.py
+            return super().get_permissions()
+
+# class ProductDetailApiView(generics.RetrieveAPIView):
+#         queryset = Product.objects.all()
+#         serializer_class = ProductSerializer
+#         lookup_url_kwarg = 'product_id' # if in url <int:pk> is not there but any other name then this is what i have to do, Look in the urls.py
 
 
 class OrderListApiView(generics.ListAPIView):

@@ -1,6 +1,22 @@
 GET http://127.0.0.1:8000/products/
 
+###
+GET http://127.0.0.1:8000/products/10
 
+###
+
+PATCH   http://127.0.0.1:8000/products/1/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NTY2OTk3LCJpYXQiOjE3NTk1NjY2OTcsImp0aSI6IjliMWUxNzUxODU5MjQyMjg4Nzc5OWYzYjU5ZDIzYmI5IiwidXNlcl9pZCI6IjEifQ.sJtMXph8polBGdTOmZQohxZvWIqvdJyaz532Ls2hhsc
+
+{
+  "description": "Sony Scanner"
+}
+###
+
+DELETE   http://127.0.0.1:8000/products/10/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NTY2OTk3LCJpYXQiOjE3NTk1NjY2OTcsImp0aSI6IjliMWUxNzUxODU5MjQyMjg4Nzc5OWYzYjU5ZDIzYmI5IiwidXNlcl9pZCI6IjEifQ.sJtMXph8polBGdTOmZQohxZvWIqvdJyaz532Ls2hhsc
 
 ###
 
@@ -23,8 +39,8 @@ POST http://127.0.0.1:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username" : "shahriar",
-    "password" : "1234"
+    "username" : "admin",
+    "password" : "test"
 }
 
 
@@ -33,3 +49,15 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/user-orders/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NDkxMTU5LCJpYXQiOjE3NTk0OTA4NTksImp0aSI6ImJkNDVjYjJkZGFjYjQxZDM4M2Q0YmVjN2I5N2M0OGFjIiwidXNlcl9pZCI6IjMifQ.tyilEM5mAXMJZ1RXlflhwC07JM9qcjKfH0qn3sjLUxw
+
+
+
+###
+
+POST http://127.0.0.1:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1OTY1MjAwMywiaWF0IjoxNzU5NTY1NjAzLCJqdGkiOiJmNzkyNzc1NTg3N2E0MmE1YmRjMmZmNTAyYzNkZjQ0OSIsInVzZXJfaWQiOiIzIn0.8Y5dxhMyVCkFYeacaIyyYaTfiMKAnw3RAQ9iUFCpSJM"
+}
+
