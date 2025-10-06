@@ -23,13 +23,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/products/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NDkwODI3LCJpYXQiOjE3NTk0OTA1MjcsImp0aSI6ImI3NDg0MDk1NGM4MTQ2NDliYjEyMWE4ZTM3ZGIxYzM0IiwidXNlcl9pZCI6IjMifQ.s1UKC2SFk4YQrWfVl6Lf5ttNYjqUCZ_zYCiwTSQobe8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU5NzQ4OTYwLCJpYXQiOjE3NTk3NDg2NjAsImp0aSI6IjY5MGIwYzVhZTAzNTQ3ZWViMzljMGRmNjBlNDc0MDYyIiwidXNlcl9pZCI6IjEifQ.-8-AbpzwDEWsf2ridWIEiCtSFgNZl4_e8pPs8v5S0F4
 
 {
-    "description": "Chinese Ponno!",
-    "name": "Singer TV",
-    "price": "2009",
-    "stock": 21
+    "description": "PlayStation Gaming!",
+    "name": "PS5",
+    "price": "250",
+    "stock": 0
 }
 
 

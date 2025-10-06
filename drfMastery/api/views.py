@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, IsAdminUser, AllowAny
 from rest_framework.views import APIView
-from .filters import ProductFilter
+from .filters import ProductFilter, InStockFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 
@@ -20,6 +20,7 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
       filter_backends = [DjangoFilterBackend,
                         filters.SearchFilter,
                         filters.OrderingFilter,
+                        InStockFilterBackend
                         ]
       search_fields = ['name', 'description', '=price']
       ordering_fields = ['name', 'price', 'stock']
