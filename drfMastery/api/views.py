@@ -11,7 +11,7 @@ from .filters import ProductFilter, InStockFilterBackend
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
-
+from rest_framework import viewsets
 
 
 class ProductListCreateApiView(generics.ListCreateAPIView):
@@ -68,20 +68,35 @@ class ProductDetailApiView(generics.RetrieveUpdateDestroyAPIView):
 #         lookup_url_kwarg = 'product_id' # if in url <int:pk> is not there but any other name then this is what i have to do, Look in the urls.py
 
 
-class OrderListApiView(generics.ListAPIView):
+class OrderViewSet(viewsets.ModelViewSet):
       queryset = Order.objects.prefetch_related('items__product')
       serializer_class = OrderSerializer
+      permission_classes = [AllowAny]
+      pagination_class = None
+
+
+
+
+
+
+
+
+
+#Old Generic Views
+# class OrderListApiView(generics.ListAPIView):
+#       queryset = Order.objects.prefetch_related('items__product')
+#       serializer_class = OrderSerializer
       
 
-class UserOrderListApiView(generics.ListAPIView):
-      queryset = Order.objects.prefetch_related('items__product')
-      serializer_class = OrderSerializer
-      permission_classes= [IsAuthenticated]
+# class UserOrderListApiView(generics.ListAPIView):
+#       queryset = Order.objects.prefetch_related('items__product')
+#       serializer_class = OrderSerializer
+#       permission_classes= [IsAuthenticated]
 
-      def get_queryset(self):
-            user = self.request.user
-            qs = super().get_queryset()
-            return qs.filter(user = user)
+#       def get_queryset(self):
+#             user = self.request.user
+#             qs = super().get_queryset()
+#             return qs.filter(user = user)
             
 
 
