@@ -1,6 +1,6 @@
 from django.db.models import Max
 from django.shortcuts import get_object_or_404
-from api.serializers import ProductSerializer, OrderSerializer, ProductInfoSerializer
+from api.serializers import ProductSerializer, OrderSerializer, ProductInfoSerializer, OrderCreateSerializer
 from api.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -75,7 +75,13 @@ class OrderViewSet(viewsets.ModelViewSet):
       pagination_class = None
       filterset_class = OrderFilter
       filter_backends = [DjangoFilterBackend]
-
+      def perform_create(self, serializer):
+            return serializer.save(user = self.request.user)
+      def get_serializer_class(self):
+            #can also check if self.request.method == 'POST' :
+            if self.action == 'create':
+                  return OrderCreateSerializer
+            return super().get_serializer_class()
 
       def get_queryset(self):
             qs =  super().get_queryset()
