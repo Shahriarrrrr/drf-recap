@@ -1,4 +1,6 @@
 from django.db.models import Max
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.shortcuts import get_object_or_404
 from api.serializers import ProductSerializer, OrderSerializer, ProductInfoSerializer, OrderCreateSerializer
 from api.models import Product, Order, OrderItem
@@ -14,6 +16,9 @@ from rest_framework.pagination import PageNumberPagination, LimitOffsetPaginatio
 from rest_framework import viewsets
 from rest_framework.decorators import action
 
+
+
+
 class ProductListCreateApiView(generics.ListCreateAPIView):
       queryset = Product.objects.order_by('pk')
       serializer_class = ProductSerializer
@@ -25,11 +30,20 @@ class ProductListCreateApiView(generics.ListCreateAPIView):
                         ]
       search_fields = ['name', 'description', '=price']
       ordering_fields = ['name', 'price', 'stock']
-      pagination_class = LimitOffsetPagination
+      pagination_class = None
       # pagination_class.page_size = 2
       # pagination_class.page_query_param = 'pagenum'
       # pagination_class.page_size_query_param = 'size'
       # pagination_class.max_page_size = 6
+
+      @method_decorator(cache_page(60 * 15, key_prefix='product_list'))
+      def list(self,request, *args, **kwargs):
+            return super().list(request, *args, **kwargs)
+      
+      def get_queryset(self):
+            import time
+            time.sleep(2)
+            return super().get_queryset()
 
 
       def get_permissions(self):
